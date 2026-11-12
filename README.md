@@ -41,10 +41,10 @@ Experiments were conducted using two BEIR benchmark datasets:
 
 ## Evaluation Metrics
 
-- NDCG@10
-- MAP@10
-- Recall@10
-- Precision@10
+- **NDCG@10:** Measures ranking quality.
+- **MAP@10:** Measures average precision across the top 10 results.
+- **Recall@10:** Measures how many relevant documents were retrieved.
+- **Precision@10:** Measures how many retrieved documents were relevant.
 
 ## Experimental Results
 
@@ -64,98 +64,17 @@ Experiments were conducted using two BEIR benchmark datasets:
 
 | Method | NDCG@10 | MAP@10 | Recall@10 | Precision@10 |
 |---|---:|---:|---:|---:|
-| BM25 | 0.3061 | 0.1162 | 0.1521 | 0.2180 |
-| Dense | 0.3159 | 0.1105 | 0.1550 | **0.2433** |
-| Hybrid RRF | **0.3381** | ~0.1298* | **0.1667** | 0.2415 |
+| BM25 | 0.30610 | 0.11618 | 0.15214 | 0.21796 |
+| Dense | 0.31594 | 0.11048 | 0.15499 | **0.24334** |
+| Hybrid RRF 50:50 | **0.33812** | **0.12981** | **0.16667** | 0.24149 |
 
-**Observation:** Hybrid RRF achieved the highest reported NDCG@10 and Recall@10. Dense retrieval achieved the highest Precision@10.
+**Observation:** Hybrid RRF achieved the highest NDCG@10, MAP@10, and Recall@10. Dense retrieval achieved the highest Precision@10.
 
 ![NFCorpus Comparison](nfcorpus_comparison.png)
-
-*Note: The NFCorpus Hybrid MAP@10 value is approximate and must be verified against the original CSV before formal submission.*
 
 ## Weighted RRF Experiment
 
 Three BM25 and dense retrieval weight combinations were explored on SciFact.
 
-| BM25 Weight | Dense Weight | NDCG@10 | MAP@10 |
-|---:|---:|---:|---:|
-| 0.25 | 0.75 | 0.66160 | 0.61689 |
-| 0.50 | 0.50 | **0.69217** | 0.64052 |
-| 0.75 | 0.25 | 0.67985 | **0.64310** |
-
-The 50:50 configuration achieved the highest NDCG@10 among the tested configurations, while 75:25 achieved the highest MAP@10.
-
-## Key Findings
-
-- Hybrid retrieval performed strongly across both benchmark datasets.
-- Hybrid RRF achieved the highest NDCG@10 and Recall@10 on both datasets.
-- Dense retrieval achieved the highest Precision@10 on NFCorpus.
-- The best retrieval configuration can depend on the evaluation metric and dataset.
-
-## Repository Structure
-
-```text
-rag-retrieval-research/
-│
-├── RAG_Retrieval_Research.ipynb
-├── README.md
-├── requirements.txt
-├── LICENSE
-├── retrieval_comparison (1).csv
-├── weight_experiments (1).csv
-├── nfcorpus_retrieval_comparison.csv
-├── scifact_comparison.png
-├── nfcorpus_comparison.png
-└── RAG_Retrieval_Research_Report.pdf
-```
-
-*The PDF and CSV filenames in this structure should match the actual names in the repository.*
-
-## How to Run
-
-1. Clone the repository:
-
-```bash
-git clone https://github.com/KHarshithaaa/rag-retrieval-research.git
-```
-
-2. Navigate to the project directory:
-
-```bash
-cd rag-retrieval-research
-```
-
-3. Install the required libraries:
-
-```bash
-pip install -r requirements.txt
-```
-
-4. Open the Jupyter Notebook in Google Colab or a local Jupyter environment.
-
-5. Run the notebook cells to reproduce the retrieval experiments.
-
-## Limitations and Future Work
-
-- The experiments cover only two BEIR datasets.
-- Only one dense embedding model was evaluated.
-- The SciFact test split was also used for exploratory weight selection.
-- The NFCorpus Hybrid MAP@10 value requires verification.
-- The study evaluates retrieval performance, not complete RAG answer generation or factuality.
-- Statistical significance testing and per-query error analysis have not yet been performed.
-
-Future work includes evaluating additional embedding models, using separate validation and test splits, testing reranking methods, and evaluating a complete RAG pipeline.
-
-## Research Status
-
-This is an independent preliminary experimental research project. The findings are exploratory and do not represent peer-reviewed or published research.
-
-## Author
-
-**Kothagundla Harshitha**
-
-B.Tech Computer Science and Engineering  
-KL University
-
-- GitHub: [KHarshithaaa](https://github.com/KHarshithaaa)
+| BM25 Weight | Dense Weight | NDCG@10 | MAP@10 | Recall@10 | Precision@10 |
+|---:|---:|---:|---:|---:|---
